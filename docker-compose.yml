@@ -1,0 +1,43 @@
+version: "3.8"
+services: 
+  app:
+    container_name: "app_phpmysql"
+    image: "hanifmuhammad/frameduz-php:7.4-apache"
+    ports: 
+      - 8081:80
+    volumes: 
+      # - /Users/hanifmuhammad/Sites/test/phpmysql:/var/www/html
+      # - /Users/hanifmuhammad/Sites/test/phpmysql/vhost:/etc/apache2/sites-available/
+      - .:/var/www/html
+      - ./vhost:/etc/apache2/sites-available/
+    environment: 
+      MYSQL_HOST: "mysql_phpmysql"
+      MYSQL_PORT: "3306" #default port mysql
+      MYSQL_USER: "root"
+      MYSQL_PASS: "root"
+      MYSQL_DBNAME: "dbweb_sample"
+    links: 
+      - mysql
+    networks: 
+      - network
+
+  mysql:
+    container_name: "mysql_phpmysql"
+    image: "mysql:5.7"
+    ports: 
+      - 33081:3306
+    volumes: 
+      # - /Users/hanifmuhammad/Sites/test/phpmysql/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
+    environment: 
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+    networks: 
+      - network
+
+networks: 
+  network:
+    name: "network_phpmysql"
+    driver: "bridge"
+
