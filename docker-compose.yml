@@ -6,8 +6,8 @@ services:
     ports: 
       - 8081:80
     volumes: 
-      # - /Users/hanifmuhammad/Sites/test/phpmysql:/var/www/html
-      # - /Users/hanifmuhammad/Sites/test/phpmysql/vhost:/etc/apache2/sites-available/
+      # - /Users/hanifmuhammad/Sites/phpmysql:/var/www/html
+      # - /Users/hanifmuhammad/Sites/phpmysql/vhost:/etc/apache2/sites-available/
       - .:/var/www/html
       - ./vhost:/etc/apache2/sites-available/
     environment: 
@@ -27,7 +27,7 @@ services:
     ports: 
       - 33081:3306
     volumes: 
-      # - /Users/hanifmuhammad/Sites/test/phpmysql/mysql:/var/lib/mysql
+      # - /Users/hanifmuhammad/Sites/phpmysql/mysql:/var/lib/mysql
       - ./mysql:/var/lib/mysql
     environment: 
       MYSQL_USER: "root"
